@@ -2,26 +2,23 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>배경 동영상 전환</title>
+  <title>Artifact</title>
   <style>
-    /* 전체 화면 및 스크롤 제거 */
     body, html {
       margin: 0;
       padding: 0;
       overflow: hidden;
       width: 100%;
       height: 100%;
-      cursor: pointer; /* 마우스 포인터로 화면 클릭 유도 */
+      cursor: pointer;
     }
 
-    /* 영상들을 감싸는 컨테이너 */
     .video-container {
       position: relative;
       width: 100%;
       height: 100%;
     }
 
-    /* 배경 동영상 기본 스타일 */
     .video-container video {
       position: absolute;
       top: 0;
@@ -42,26 +39,20 @@
   </div>
 
   <script>
-    // 모든 영상 요소 가져오기
     const videos = document.querySelectorAll('.video-container video');
-    // 첫 번째 영상만 보이도록 초기 설정
     let currentIndex = 0;
     videos[currentIndex].style.display = 'block';
 
-    // 영상 전환 후 재생 함수
     function showVideo(index) {
-      // 모든 영상 숨기고 재생 위치 초기화
       videos.forEach(video => {
         video.style.display = 'none';
         video.pause();
         video.currentTime = 0;
       });
-      // 해당 인덱스의 영상만 표시 후 재생
       videos[index].style.display = 'block';
       videos[index].play();
     }
 
-    // 화면 어디든 클릭하면 다음 영상으로 넘어감
     document.addEventListener('click', () => {
       currentIndex = (currentIndex + 1) % videos.length;
       showVideo(currentIndex);
